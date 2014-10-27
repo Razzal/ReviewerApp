@@ -1,0 +1,6 @@
+
+    <ul>
+    {% for movie in hot_or_not %}
+        <li><a href="/reviewer/movie/{{ movie.id }}/">{{ movie.movie_title }}</a></li>
+    {% endfor %}
+    </ul>
