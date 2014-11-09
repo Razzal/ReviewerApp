@@ -11,11 +11,14 @@ class Movie(models.Model):
     runtime = models.PositiveIntegerField(default = 0 )
     synopsis = models.CharField(max_length = 2500)
     avg_score = models.FloatField(default = 5, editable = False)
+    movie_image = models.ImageField(max_length= 2500, null=True)
 
     def __str__(self):
         return self.movie_title
     def hot_or_not(self):
         return self.avg_score > 6
+
+
 
 
 class User(models.Model):

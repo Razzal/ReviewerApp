@@ -1,6 +1,17 @@
+{% extends "reviewer/base.html" %}
+{% load staticfiles %}
 
-    <ul>
-    {% for movie in hot_or_not %}
-        <li><a href="/reviewer/movie/{{ movie.id }}/">{{ movie.movie_title }}</a></li>
-    {% endfor %}
-    </ul>
+{% block heading %}<h1 class="movie-title text-center">Movie News</h1>{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        {% for movie in hot_or_not %}
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list" text-center><h4><a
+                    href="/reviewer/movie/{{ movie.id }}/">{{ movie.movie_title }}</a></h4></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list right-list"
+                 text-center>{{ movie.synopsis }}</div>
+            <br>
+
+        {% endfor %}
+    </div>
+{% endblock %}
