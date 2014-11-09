@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1142086093">
+    <data-source source="LOCAL" name="Django default" uuid="d5908dd6-243f-448e-a100-387d3fc130d1">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://web440.webfaction.com:5432/class_movie_app_db</jdbc-url>
+      <user-name>application</user-name>
+      <user-password>dfcbdfdadfdadfdadfcbdfd9dfd9</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
