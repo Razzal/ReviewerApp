@@ -6,7 +6,7 @@
     <div class="container-fluid">
         {% for movie in hot_or_not %}
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list" text-center><h4><a
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list" ><h4><a
                     href="/reviewer/movie/{{ movie.id }}/">{{ movie.movie_title }}</a></h4></div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list right-list"
                  text-center>{{ movie.synopsis }}</div>

@@ -46,7 +46,12 @@ def review(request):
 
 
 def latest_reviews(request):
-    return HttpResponse('This is where latest reviews will go')
+    hot_or_not = Movie.objects.all()
+    template = loader.get_template('reviewer/latest_reviews.html')
+    context = RequestContext(request, {
+        'hot_or_not': hot_or_not,
+    })
+    return HttpResponse(template.render(context))
 
 
 def search(request):
@@ -62,6 +67,9 @@ def search(request):
         else:
             form = SearchForm()
             return render(request, '/reviewer/', {'form': form})
+
+
+
 
 
 # Create your views here.

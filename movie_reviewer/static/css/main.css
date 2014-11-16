@@ -34,13 +34,9 @@
 
 .grid-movie-list {
     background-color: #4b356a;
-    text-align:center;
     overflow:      hidden;
     height:        4em;
     color:         #00ff00;
-    border-top:    2px solid #ff8000;
-    border-left:   2px solid #ff8000;
-    border-bottom: 2px solid #ff8000;
     font-family: redstarbold;
 }
 .right-list {

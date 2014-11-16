@@ -2,11 +2,30 @@
 {% load staticfiles %}
 
 {% block heading %}<h1 class="movie-title text-center">Latest Reviews</h1>{% endblock %}
+
 {% block content %}
 
-    {% for movie in hot_or_not %}
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list" text-center>  <h4><a href="/reviewer/movie/{{ movie.id }}/">{{ movie.movie_title }}</a></h4></div><div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list right-list" text-center>{{ movie.synopsis }}</div>
-        <br>
-    {% endfor %}
+    <div class="table-responsive">
+        <table class="table grid-movie-list site-text-header">
+            <thead>
+                <tr><th>Movie Name</th><th>Director</th><th>Release Date</th><th>Rating</th></tr>
+            </thead>
+            <tbody>
 
+
+    {% for movie in hot_or_not %}
+
+            <tr>
+            <a href="/reviewer/movie/{{ movie.id }}/">
+                <td>{{ movie.movie_title }}</td>
+            </a>
+                <td>{{ movie.director_last_name }}, {{ movie.director_first_name }}</td>
+                <td>{{ movie.release_date }}</td>
+                <td>{{ movie.avg_score }}</td>
+            </tr>
+
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
