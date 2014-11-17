@@ -3,15 +3,28 @@
 
 {% block heading %}<h1 class="movie-title text-center">Movie News</h1>{% endblock %}
 {% block content %}
-    <div class="container-fluid">
-        {% for movie in hot_or_not %}
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list" ><h4><a
-                    href="/reviewer/movie/{{ movie.id }}/">{{ movie.movie_title }}</a></h4></div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 grid-movie-list right-list"
-                 text-center>{{ movie.synopsis }}</div>
-            <br>
+    <div class="table-responsive">
+        <table class="table grid-movie-list site-text-header">
+            <thead>
+                <tr><th>Article Title</th><th>Poster</th><th>About</th><th>Date Posted</th></tr>
+            </thead>
+            <tbody>
 
-        {% endfor %}
+
+    {% for article in newsarticles %}
+
+            <tr>
+            <a href="/reviewer/movie/{{ article.id }}/">
+                <td>{{ article.article_title }}</td>
+            </a>
+                <td>{{ article.article_poster }}</td>
+                <td>{{ article.article_synopsis }}</td>
+                <td>{{ article.article_post_date }}</td>
+            </tr>
+
+    {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

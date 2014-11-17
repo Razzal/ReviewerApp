@@ -7,10 +7,10 @@ from movie_reviewer.reviewer_forms import *
 
 
 def index(request):
-    hot_or_not = Movie.objects.all()
+    articles = NewsArticle.objects.all()
     template = loader.get_template('reviewer/index.html')
     context = RequestContext(request, {
-        'hot_or_not': hot_or_not,
+        'newsarticles': articles,
     })
     return HttpResponse(template.render(context))
 

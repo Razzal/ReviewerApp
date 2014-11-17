@@ -33,7 +33,7 @@ class User(models.Model):
 class Review(models.Model):
     movie = models.ForeignKey(Movie)
     movie_rating = models.IntegerField(default = 5)
-    movie_comments = models.CharField(max_length = 2500)
+    movie_comments = models.CharField(max_length = 5000)
     reviewer = models.ForeignKey( User )
 
     def __str__(self):
@@ -49,4 +49,14 @@ class Actors(models.Model):
         actor = self.actor_last_name + " " + self.actor_first_name
         return actor
 
+
+class NewsArticle(models.Model):
+    article_title = models.CharField(max_length = 100)
+    article_post_date =  models.DateField('Date Posted')
+    article_synopsis = models.CharField(max_length = 100)
+    article_full_text = models.CharField(max_length = 20000)
+    article_poster = models.ForeignKey( User )
+
+    def __str__(self):
+        return self.article_title
 
