@@ -68,7 +68,10 @@
 body {
     background-color: #75A3A3;
 }
-
+p {
+    font-family: redstarbold;
+    color: #FF1919;
+}
 .navbar-default {
 	background-color: #4b356a;
 	border-color: #ff8000;

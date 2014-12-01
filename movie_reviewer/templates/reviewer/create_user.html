@@ -1,0 +1,12 @@
+{% extends "reviewer/base.html" %}
+{% load staticfiles %}
+
+{% block heading %}<h1 class="movie-title text-center">Create a new user</h1>{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ create_user_form }}
+    <input type="submit" value="Submit"/>
+</form>
+{% endblock content %}

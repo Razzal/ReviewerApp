@@ -57,7 +57,9 @@ ROOT_URLCONF = 'class_review_app.urls'
 
 WSGI_APPLICATION = 'class_review_app.wsgi.application'
 
-
+LOGIN_REDIRECT_URL = "/reviewer/profile"
+LOGIN_URL = "/reviewer/login"
+LOGOUT_URL = "/reviewer/logout"
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
