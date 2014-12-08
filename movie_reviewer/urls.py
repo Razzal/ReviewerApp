@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^review', views.review, name='review'),
     url(r'^latest-reviews', views.latest_reviews, name='latestReviews'),
     url(r'^search/search_term', views.search, name='search'),
+    url(r'^logout', views.logout, name='logout'),
 )

@@ -13,7 +13,7 @@ class Movie(models.Model):
     runtime = models.PositiveIntegerField(default = 0 )
     synopsis = models.CharField(max_length = 2500)
     avg_score = models.FloatField(default = 5, editable = False)
-    movie_image = models.ImageField(max_length= 2500, null=True, blank=True)
+    movie_image = models.FileField(max_length= 2500, null=True, blank=True)
 # look into persisting images as blobs
 
     def __str__(self):
