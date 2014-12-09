@@ -98,7 +98,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = "True"
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static_root'
+STATIC_ROOT = '/home/razzal/webapps/moviereviewer_static/'
 STATICFILES_DIRS = (
-    "/movie_reviewer/static/",
+    os.path.join(BASE_DIR, "movie_reviewer/static/"),
 )
+MEDIA_URL='/media/'
+MEDIA_ROOT= '/home/razzal/webapps/reviewer_media/'
+

@@ -6,6 +6,7 @@ from movie_reviewer.models import *
 from movie_reviewer.reviewer_forms import *
 from django.contrib.auth.decorators import login_required
 from movie_reviewer.account import *
+import datetime
 
 def index(request):
     articles = NewsArticle.objects.all()
@@ -57,7 +58,21 @@ def view_movie(request, movie_id):
 
 @login_required
 def review(request):
-    return HttpResponse("This is where you create a review")
+    status_message=''
+    if request.method == 'POST':
+        add_review_form = AddReviewForm(request.POST)
+
+        if add_review_form.is_valid():
+            review = Review()
+            review.movie= add_review_form.cleaned_data['movie']
+            review.movie_rating = add_review_form.cleaned_data['movie_rating']
+            review.movie_comments = add_review_form.cleaned_data['movie_comments']
+            review.review_post_date = datetime.date.today()
+            review.reviewer =get_object_or_404(ReviewUser, user = request.user)
+            review.save()
+    else:
+        add_review_form = AddReviewForm()
+    return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form})
 
 
 def latest_reviews(request):
