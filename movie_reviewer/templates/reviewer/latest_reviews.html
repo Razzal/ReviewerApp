@@ -8,20 +8,21 @@
     <div class="table-responsive">
         <table class="table grid-movie-list site-text-header">
             <thead>
-                <tr><th>Movie Name</th><th>Director</th><th>Release Date</th><th>Rating</th></tr>
+                <tr><th>Movie Name</th><th>Reviewer</th><th>Review Date</th><th>Rating</th><th>Comments</th></tr>
             </thead>
             <tbody>
 
 
-    {% for movie in hot_or_not %}
+    {% for review in hot_or_not %}
 
             <tr>
             <a href="/reviewer/movie/{{ movie.id }}/">
-                <td>{{ movie.movie_title }}</td>
+                <td>{{ review.movie.movie_title }}</td>
             </a>
-                <td>{{ movie.director_last_name }}, {{ movie.director_first_name }}</td>
-                <td>{{ movie.release_date }}</td>
-                <td>{{ movie.avg_score }}</td>
+                <td>{{ review.reviewer.user_name }}</td>
+                <td>{{ review.review_post_date }}</td>
+                <td>{{ review.movie_rating }}</td>
+                <td>{{ review.movie_comments }}</td>
             </tr>
 
     {% endfor %}

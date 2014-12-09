@@ -1,12 +1,12 @@
 {% extends "reviewer/base.html" %}
 {% load staticfiles %}
 
-{% block heading %}<h1 class="movie-title text-center">Add Review</h1><br><h3 class="error">{{ message }}</h3>{% endblock %}
+{% block heading %}<h1 class="movie-title text-center">Add Movie</h1><br><h3 class="error">{{ message }}</h3>{% endblock %}
 
 {% block content %}
 <form method="post" class="form-horizontal">
     {% csrf_token %}
-    {{ add_review_form }}
+    {{ add_movie_form }}
     <input type="submit" value="Submit"/>
 </form>
 {% endblock content %}

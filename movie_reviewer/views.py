@@ -40,7 +40,29 @@ def create_user(request):
 
 @login_required
 def add_movie(request):
-    return HttpResponse("This is where you add a movie")
+    status_message=''
+    if request.method == 'POST:':
+        add_movie_form = AddMovieForm(request.POST)
+        if add_movie_form.is_valid():
+            movie = Movie()
+            movie.movie_title = add_movie_form.cleaned_data['movie']
+            movie.release_date = add_movie_form.cleaned_data['release_date']
+            movie.director_first_name = add_movie_form.cleaned_data['director_first']
+            movie.director_last_name = add_movie_form.cleaned_data['director_last']
+            movie.lead_actor = add_movie_form.cleaned_data['lead_first'] + ' ' + add_movie_form.cleaned_data['lead_last']
+            movie.genre = add_movie_form.cleaned_data['genre']
+            movie.runtime = add_movie_form.cleaned_data['runtime']
+            movie.synopsis = add_movie_form.cleaned_data['synopsis']
+            movie.avg_score=5
+            print(movie.save())
+            status_message='Movie Added Successfully'
+            return render(request, 'reviewer/add_movie.html', {'add_movie_form': add_movie_form, 'message': status_message})
+        else:
+            status_message="Missing required fields"
+            return render(request, 'reviewer/add_movie.html', {'add_movie_form': add_movie_form, 'message': status_message})
+    else:
+        add_movie_form = AddMovieForm()
+    return render(request, 'reviewer/add_movie.html', {'add_movie_form': add_movie_form})
 
 
 def view_movie(request, movie_id):
@@ -70,16 +92,18 @@ def review(request):
             review.review_post_date = datetime.date.today()
             review.reviewer =get_object_or_404(ReviewUser, user = request.user)
             review.save()
+            status_message="Review successfully saved"
+            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'message': status_message})
     else:
         add_review_form = AddReviewForm()
     return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form})
 
 
 def latest_reviews(request):
-    movie_list = Movie.objects.all()
+    review_list = Review.objects.all()
     template = loader.get_template('reviewer/latest_reviews.html')
     context = RequestContext(request, {
-        'hot_or_not': movie_list,
+        'hot_or_not':review_list,
     })
     return HttpResponse(template.render(context))
 
