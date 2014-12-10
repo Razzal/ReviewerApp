@@ -1,7 +1,7 @@
 from django import forms
 from movie_reviewer.models import Movie
 
-RATING_CHOICES = [(1, 1),(2, 2),(3, 3),(4, 4),(5, 5),(6, 6),(7, 7),(8, 8),(9, 9),(10, 10),]
+RATING_CHOICES = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)]
 
 class SearchForm(forms.Form):
     search_term = forms.CharField(label='Search', max_length=50, required=True)
@@ -28,4 +28,4 @@ class AddMovieForm(forms.Form):
     genre = forms.CharField(label='Genre', max_length=25)
     runtime = forms.IntegerField(label='Runtime', min_value=0,required=False)
     movie_image = forms.FileField(max_length=25, required=False)
-    sysnopsis = forms.CharField(max_length=200, widget=forms.Textarea)
+    synopsis = forms.CharField(max_length=200, widget=forms.Textarea)

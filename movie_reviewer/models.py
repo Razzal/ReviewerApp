@@ -38,7 +38,7 @@ class Review(models.Model):
     movie = models.ForeignKey(Movie)
     movie_rating = models.IntegerField(default = 5)
     movie_comments = models.CharField(max_length = 5000)
-    review_post_date =  models.DateField('Date Posted')
+    review_post_date = models.DateField('Date Posted')
     reviewer = models.ForeignKey( ReviewUser )
 
     def __str__(self):

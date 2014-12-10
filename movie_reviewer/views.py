@@ -138,6 +138,9 @@ def login(request):
             if isinstance(user, User):
                 review_user = ReviewUser.objects.filter(user = user)
                 return render(request, 'reviewer/login.html', {'login_form': login_form, 'message': status_message})
+            else:
+                status_message = user
+                return render(request, 'reviewer/login.html', {'login_form': login_form, 'message': status_message})
     else:
             login_form = LoginForm()
     return render(request, 'reviewer/login.html', {'login_form': login_form})
