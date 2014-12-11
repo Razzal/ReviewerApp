@@ -11,7 +11,7 @@ class Movie(models.Model):
     lead_actor = models.CharField(max_length=50,blank=True, null=True)
     genre = models.CharField(default='action',max_length = 25)
     runtime = models.PositiveIntegerField(default = 0 )
-    synopsis = models.CharField(max_length = 2500)
+    synopsis = models.CharField(max_length = 500)
     avg_score = models.FloatField(default = 5, editable = False)
     movie_image = models.FileField(max_length= 2500, null=True, blank=True)
 # look into persisting images as blobs
@@ -37,7 +37,7 @@ class ReviewUser(models.Model):
 class Review(models.Model):
     movie = models.ForeignKey(Movie)
     movie_rating = models.IntegerField(default = 5)
-    movie_comments = models.CharField(max_length = 5000)
+    movie_comments = models.CharField(max_length = 500)
     review_post_date =  models.DateField('Date Posted')
     reviewer = models.ForeignKey( ReviewUser )
 

@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'movie_reviewer'
 )
 
@@ -76,6 +77,8 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 LANGUAGE_CODE = 'en-us'
 

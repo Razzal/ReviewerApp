@@ -1,12 +1,13 @@
 {% extends "reviewer/base.html" %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block heading %}<h1 class="movie-title text-center">Add Review</h1><br><h3 class="error">{{ message }}</h3>{% endblock %}
 
 {% block content %}
-<form method="post" class="form-horizontal">
+<form method="post" class="form-horizontal col-xs-offset-3 col-xs-6">
     {% csrf_token %}
-    {{ add_review_form }}
+    {{ add_review_form|crispy }}
     <input type="submit" value="Submit"/>
 </form>
 {% endblock content %}
