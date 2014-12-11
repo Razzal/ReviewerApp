@@ -32,7 +32,7 @@ def create_user(request):
             if new_account_status == "True":
                 account_to_create.create_account(create_user_form.cleaned_data['user_name'], create_user_form.cleaned_data['email'], create_user_form.cleaned_data['password'])
                 new_account_status = "Account Created Successfully"
-
+                account_to_create.login(create_user_form.cleaned_data['user_name'], create_user_form.cleaned_data['password'],request)
             return render(request, 'reviewer/create_user.html', {'create_user_form': create_user_form, 'message': new_account_status})
     else:
         create_user_form = CreateUserForm()
@@ -42,12 +42,9 @@ def create_user(request):
 def add_movie(request):
     status_message=''
     print(request.method)
-    print('in add_movie')
     if request.method == 'POST':
-        print('in post')
         add_movie_form = AddMovieForm(request.POST)
         if add_movie_form.is_valid():
-            print('in valid form')
             movie = Movie()
             movie.movie_title = add_movie_form.cleaned_data['movie']
             movie.release_date = add_movie_form.cleaned_data['release_date']
@@ -62,11 +59,9 @@ def add_movie(request):
             status_message='Movie Added Successfully'
             return render(request, 'reviewer/add_movie.html', {'add_movie_form': add_movie_form, 'message': status_message})
         else:
-            print('in form not valid')
             status_message="Missing required fields"
             return render(request, 'reviewer/add_movie.html', {'add_movie_form': add_movie_form, 'message': status_message})
     else:
-        print('in not post')
         add_movie_form = AddMovieForm()
     return render(request, 'reviewer/add_movie.html', {'add_movie_form': add_movie_form})
 
@@ -87,7 +82,6 @@ def view_movie(request, movie_id):
 @login_required
 def review(request):
     status_message=''
-    print(request)
     if request.method == 'POST':
         add_review_form = AddReviewForm(request.POST)
 
@@ -143,8 +137,20 @@ def login(request):
             account = Account()
             user = account.login(login_form.cleaned_data['user_name'], login_form.cleaned_data['password'],request)
             if isinstance(user, User):
-                review_user = ReviewUser.objects.filter(user = user)
-                return render(request, 'reviewer/login.html', {'login_form': login_form, 'message': status_message})
+                return HttpResponseRedirect('/reviewer/profile/%s' % user.username)
     else:
             login_form = LoginForm()
     return render(request, 'reviewer/login.html', {'login_form': login_form})
+
+@login_required()
+def profile(request, username):
+
+    user = User.objects.filter(username=username)
+    reviewer = ReviewUser.objects.filter(user=user)
+    user_reviews = Review.objects.filter(reviewer=reviewer)
+    template = loader.get_template('reviewer/profile.html')
+    context = RequestContext(request, {
+        'user_reviews':user_reviews,
+        'reviewer': username,
+    })
+    return HttpResponse(template.render(context))

@@ -1,0 +1,30 @@
+{% extends "reviewer/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block heading %}<h1 class="movie-title text-center">{{ reviewer }}'s Profile</h1><br><h3 class="error">{{ message }}</h3>{% endblock %}
+
+{% block content %}
+    <div></div>
+    <div class="table-responsive">
+        <table class="table grid-movie-list site-text-header">
+            <thead>
+                <tr><th>Movie Name</th><th>Reviewer</th><th>Review Date</th><th>Rating</th><th>Comments</th></tr>
+            </thead>
+            <tbody>
+
+    {% for review in user_reviews %}
+
+            <tr>
+                <td>{{ review.movie.movie_title }}</td>
+                <td>{{ review.reviewer.user_name }}</td>
+                <td>{{ review.review_post_date }}</td>
+                <td>{{ review.movie_rating }}</td>
+                <td>{{ review.movie_comments }}</td>
+            </tr>
+
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
