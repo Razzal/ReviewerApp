@@ -16,6 +16,10 @@
     font-family: 'madisonave';
     src: url("../fonts/MADAVE.TTF");
 }
+@font-face {
+    font-family: 'basic-lite';
+    src: url("../fonts/BasicLig_ltd.ttf");
+}
 .gliffindoor{
     font-size: 2em;
     color: #00ff00;
@@ -29,7 +33,7 @@
     font-family: redstarbold;
 }
 .nav li{
-    font-family: redstar;
+    font-family: basic-lite;
 }
 
 .grid-movie-list {
@@ -37,12 +41,12 @@
     overflow:      hidden;
     height:        4em;
     color:         #00ff00;
-    font-family: redstarbold;
+    font-family: basic-lite;
 }
 .right-list {
     border-left: 0;
     border-right:  2px solid #ff8000;
-    font-family: madisonave;
+    font-family: basic-lite;
 }
 
 .grid-movie-list a:link {
@@ -69,7 +73,7 @@ body {
     background-color: #75A3A3;
 }
 p {
-    font-family: redstarbold;
+    font-family: basic-lite;
     color: #FF1919;
 }
 
