@@ -8,6 +8,6 @@
 <form method="post" class="form-horizontal col-xs-offset-5 col-xs-2">
     {% csrf_token %}
     {{ create_user_form|crispy }}
-    <input type="submit" value="Submit"/>
+    <div class="text-center"><input type="submit" value="Submit" /><input type="reset" value="Clear" ></div>
 </form>
 {% endblock content %}

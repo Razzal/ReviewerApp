@@ -5,9 +5,14 @@
 {% block heading %}<h1 class="movie-title text-center">Add Review</h1><br><h3 class="error text-center">{{ message }}</h3>{% endblock %}
 
 {% block content %}
-<form method="post" class="form-horizontal col-xs-offset-3 col-xs-6">
+<form method="get" class="form-horizontal col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
+    {% csrf_token %}
+    {{ search_form|crispy }}
+    <div class="text-center"><input type="submit" value="Search" /></div>
+</form>
+<form method="post" class="form-horizontal col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
     {% csrf_token %}
     {{ add_review_form|crispy }}
-    <input type="submit" value="Submit"/>
+    <div class="text-center"><input type="submit" value="Submit" /><input type="reset" value="Clear" ></div>
 </form>
 {% endblock content %}
