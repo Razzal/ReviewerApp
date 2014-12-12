@@ -1,0 +1,17 @@
+{% extends "reviewer/base.html" %}
+{% load staticfiles %}
+
+{% block heading %}<h1 class="movie-title text-center">Showing results for {{ term }}</h1>{% endblock %}
+
+{% block content %}
+
+
+
+
+    {% for movie in movie_list %}
+       <a href="/reviewer/movie/{{ movie.id }}" class="grid-movie-list "> <div class="col-md-offset-3 col-md-6 col-xs-12 grid-movie-list div-list text-center"> {{ movie.movie_title }} {{  movie.director_first_name }} {{  movie.director_last_name }} {{ movie.release_date }}
+        </div></a><br>
+
+
+    {% endfor %}
+{% endblock %}

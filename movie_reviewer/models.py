@@ -52,9 +52,12 @@ class Review(models.Model):
             for review in reviews:
                 avg = avg + review.movie_rating
                 count += 1
-            movie_rated.avg_score = avg / count
+            if avg != 0:
+                movie_rated.avg_score = avg / count
+            else:
+                movie_rated.avg_score = 5
             movie_rated.save()
-            return avg/count
+            return movie_rated.avg_score
     class Meta:
         ordering = ['-review_post_date']
 

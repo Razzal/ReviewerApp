@@ -82,9 +82,10 @@ def view_movie(request, movie_id):
 @login_required
 def review(request):
     status_message=''
+
     if request.method == 'POST':
         add_review_form = AddReviewForm(request.POST)
-
+        search_form = AddMovieSearchForm()
         if add_review_form.is_valid():
             review = Review()
             review.movie= add_review_form.cleaned_data['movie']
@@ -94,10 +95,19 @@ def review(request):
             review.reviewer =get_object_or_404(ReviewUser, user = request.user)
             review.save()
             status_message="Review successfully saved"
-            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'message': status_message})
-    else:
+            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'search_form': search_form, 'message': status_message})
+    elif request.method =='GET':
+        search_form = AddMovieSearchForm(request.GET)
         add_review_form = AddReviewForm()
-    return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form})
+        if search_form.is_valid():
+            print(add_review_form)
+            # add_review_form.movie._set_queryset(Movie.objects.filter(movie_title_icontains = search_form.cleaned_date.search_term))
+            # add_review_form.movie._choices.append(Movie.objects.filter(movie_title_icontains = search_form.cleaned_date.search_term))
+            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'search_form': search_form,})
+    else:
+        search_form = AddMovieSearchForm()
+        add_review_form = AddReviewForm()
+    return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'search_form': search_form,})
 
 
 def latest_reviews(request):
@@ -116,9 +126,9 @@ def search(request):
 
         if form.is_valid():
             search_term = form.cleaned_data['search_term']
-            movie_film = get_object_or_404(Movie, movie_title=search_term)
-
-            return HttpResponseRedirect('/reviewer/movie/%d' % movie_film.id)
+            movie_film = Movie.objects.filter(movie_title__icontains=search_term)
+            return render(request, 'reviewer/movie_search.html', {'term': search_term, 'movie_list': movie_film})
+            # return HttpResponseRedirect('/reviewer/movie/search', {'term': search_term, 'movie_list': movie_film} )
         else:
             form = SearchForm()
             return render(request, '/reviewer/', {'form': form})

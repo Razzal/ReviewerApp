@@ -48,6 +48,12 @@
     border-right:  2px solid #ff8000;
     font-family: basic-lite;
 }
+.div-list {
+    border-bottom: 2px solid #ff8000;
+    border-right: 2px solid #ff8000;
+    border-left: 2px solid #ff8000;
+    font-size: 1.2em;
+}
 
 .grid-movie-list a:link {
     color: #00ff00;
@@ -57,7 +63,7 @@
     color: #00ff00;
     text-decoration: none;
 }
-.grid-movie-list a:hover {
+.grid-movie-list a:hover  {
     color: #ff00ff;
     text-decoration: none;
 }
