@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, url
-
+from django.contrib.auth.views import login, logout, password_change
+from axes.decorators import watch_login
 from movie_reviewer import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^login', views.login, name ='login'),
+    url(r'^login', watch_login(views.login), name ='login'),
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
     url(r'^createuser', views.create_user, name='createuser'),
     url(r'^movie/(?P<movie_id>\d+)', views.view_movie, name='movie'),

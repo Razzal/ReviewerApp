@@ -138,6 +138,8 @@ def login(request):
             user = account.login(login_form.cleaned_data['user_name'], login_form.cleaned_data['password'],request)
             if isinstance(user, User):
                 return HttpResponseRedirect('/reviewer/profile/%s' % user.username)
+            else:
+                return render(request, 'reviewer/login.html', {'login_form': login_form, 'message': user})
     else:
             login_form = LoginForm()
     return render(request, 'reviewer/login.html', {'login_form': login_form})

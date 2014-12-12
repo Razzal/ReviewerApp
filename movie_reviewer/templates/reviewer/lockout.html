@@ -1,0 +1,5 @@
+{% extends "reviewer/base.html" %}
+{% load staticfiles %}
+
+{% block heading %}<h1 class="movie-title text-center">Exceeded maximum failed login attempts</h1><br><h3 class="error text-center col-xs-12">You have failed {{ failure_limit }} login attempts and will be locked out by IP for {{ cooloff_time }} hours</h3>{% endblock %}
+
