@@ -11,10 +11,7 @@
                 <tr><th>Movie Name</th><th>Reviewer</th><th>Review Date</th><th>Rating</th><th>Comments</th></tr>
             </thead>
             <tbody>
-
-
     {% for review in hot_or_not %}
-
             <tr>
             <a href="/reviewer/movie/{{ movie.id }}/">
                 <td>{{ review.movie.movie_title }}</td>

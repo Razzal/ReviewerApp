@@ -85,7 +85,6 @@ def review(request):
 
     if request.method == 'POST':
         add_review_form = AddReviewForm(request.POST)
-        search_form = AddMovieSearchForm()
         if add_review_form.is_valid():
             review = Review()
             review.movie= add_review_form.cleaned_data['movie']
@@ -95,19 +94,10 @@ def review(request):
             review.reviewer =get_object_or_404(ReviewUser, user = request.user)
             review.save()
             status_message="Review successfully saved"
-            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'search_form': search_form, 'message': status_message})
-    elif request.method =='GET':
-        search_form = AddMovieSearchForm(request.GET)
-        add_review_form = AddReviewForm()
-        if search_form.is_valid():
-            print(add_review_form)
-            # add_review_form.movie._set_queryset(Movie.objects.filter(movie_title_icontains = search_form.cleaned_date.search_term))
-            # add_review_form.movie._choices.append(Movie.objects.filter(movie_title_icontains = search_form.cleaned_date.search_term))
-            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'search_form': search_form,})
+            return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'message': status_message})
     else:
-        search_form = AddMovieSearchForm()
         add_review_form = AddReviewForm()
-    return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form, 'search_form': search_form,})
+    return render(request, 'reviewer/add_review.html', {'add_review_form': add_review_form})
 
 
 def latest_reviews(request):

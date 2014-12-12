@@ -98,7 +98,7 @@ AUTHENTICATION_BACKENDS = (
 
 #Session behavior settings
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
-SESSION_EXPIRE_AT_BROWSER_CLOSE = "True"
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
@@ -107,8 +107,10 @@ STATIC_ROOT = '/home/razzal/webapps/moviereviewer_static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "movie_reviewer/static/"),
 )
-MEDIA_URL='/media/'
-MEDIA_ROOT= '/home/razzal/webapps/reviewer_media/'
+if TEMPLATE_DEBUG == True:
+    MEDIA_URL= "F:/class_review_app/movie_reviewer/images/"
+    MEDIA_ROOT= "F:/class_review_app/movie_reviewer/images/"
+
 
 TEMPLATE_CONTEXT_PROCESSORS = ('django.contrib.auth.context_processors.auth', 'django.core.context_processors.debug', 'django.core.context_processors.i18n', 'django.core.context_processors.media', 'django.core.context_processors.static', 'django.core.context_processors.tz', 'django.contrib.messages.context_processors.messages', 'django.core.context_processors.request' )
 
