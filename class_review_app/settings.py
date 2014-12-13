@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import os.path
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -66,16 +67,6 @@ LOGOUT_URL = "/reviewer/logout"
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'class_movie_app_db',
-        'USER': 'application',
-        'PASSWORD': 'apppass',
-        'HOST': 'web440.webfaction.com',
-        'PORT': '5432',
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -123,3 +114,23 @@ AXES_COOLOFF_TIME = 12
 AXES_LOCKOUT_TEMPLATE = os.path.join(BASE_DIR,'movie_reviewer/templates/reviewer/lockout.html')
 AXES_LOCKOUT_URL = '/reviewer/lockout'
 AXES_USERNAME_FORM_FIELD = 'user_name'
+
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'class_movie_app_db',
+        'USER': 'application',
+    }
+}
+else:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'class_movie_app_db',
+        'USER': 'application',
+        'PASSWORD': 'apppass',
+        'HOST': 'web440.webfaction.com',
+        'PORT': '5432',
+    }
+}

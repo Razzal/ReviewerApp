@@ -3,7 +3,7 @@
 
 
 {% block heading %}<h1 class="movie-title text-center">{{ movie.movie_title }}</h1>{% endblock %}
-{% block content %}<div class="col-md-6"><img src="/home/razzal/webapps/reviewer_media/images/Frozen-Chris-Buck.jpg" class="img-responsive" title="All images are used under fair use for review purposes"></div>
+{% block content %}<div class="col-md-6"><img src="../../images/Frozen-Chris-Buck.jpg" class="img-responsive" title="All images are used under fair use for review purposes"></div>
 <div class="table-responsive col-md-6 col-xs-4">
 <table class="table grid-movie-list site-text-header text-center col-xs-4 col-sm-4">
     <tbody>
@@ -23,7 +23,7 @@
     <div class="table-responsive col-md-6 col-xs-4"><h3 class="movie-title text-center">Reviews</h3>
         <table class="table grid-movie-list site-text-header">
             <thead>
-                <tr><th>Movie Name</th><th>Review Score</th><th>Review Date</th><th>Comments</th></tr>
+                <tr><th>Reviewer</th><th>Review Score</th><th>Review Date</th><th>Comments</th></tr>
             </thead>
             <tbody>
 
@@ -31,7 +31,7 @@
     {% for review in reviews %}
 
             <tr>
-                <td>{{ movie.movie_title }}</td>
+                <td>{{ review.reviewer.user_name }}</td>
                 <td>{{ review.movie_rating }}</td>
                 <td>{{ review.review_post_date }}</td>
                 <td>{{ review.movie_comments }}</td>
